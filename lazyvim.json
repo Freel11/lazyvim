@@ -5,7 +5,8 @@
     "lazyvim.plugins.extras.lang.omnisharp",
     "lazyvim.plugins.extras.lang.tailwind",
     "lazyvim.plugins.extras.lang.toml",
-    "lazyvim.plugins.extras.lang.typescript"
+    "lazyvim.plugins.extras.lang.typescript",
+    "lazyvim.plugins.extras.ui.dashboard-nvim"
   ],
   "install_version": 8,
   "news": {
