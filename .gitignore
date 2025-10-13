@@ -24,7 +24,5 @@ data
 # Plugin/LSP/Tool generated files
 /data/
 /log/
-/ftplugin/
-/after/
 /syntax/
 /spell/
