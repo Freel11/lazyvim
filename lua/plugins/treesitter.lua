@@ -3,19 +3,19 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     opts = {
-      -- This list will REPLACE the default list, not add to it.
       ensure_installed = {
-        "c_sharp", -- from the omnisharp extra
-        "typescript", -- from the typescript extra
+        "c_sharp",
+        "typescript",
         "tsx",
         "json",
         "markdown",
         "markdown_inline",
         "toml",
-        "css", -- for tailwind
-        -- Add any other languages you personally use here
+        "css",
         "lua",
         "bash",
+        "html",
+        "python",
       },
     },
   },
