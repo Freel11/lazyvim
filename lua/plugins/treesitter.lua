@@ -16,6 +16,7 @@ return {
         "bash",
         "html",
         "python",
+        "php",
       },
     },
   },
