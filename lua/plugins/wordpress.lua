@@ -1,14 +1,7 @@
--- Helper function to prefer project-local binaries over global ones
-local function get_binary_path(bin_name)
-  local local_bin = vim.fn.getcwd() .. "/vendor/bin/" .. bin_name
-  if vim.fn.executable(local_bin) == 1 then
-    return local_bin
-  end
-  return vim.fn.expand("~/.config/composer/vendor/bin/" .. bin_name)
-end
+local composer_bin = vim.fn.expand("~/.config/composer/vendor/bin")
 
 return {
-  -- 1. Mason: STOP installing PHP tools here.
+  -- 1. Mason
   {
     "mason-org/mason.nvim",
     opts = {
@@ -16,34 +9,28 @@ return {
     },
   },
 
-  -- 2. Nvim-Lint: Point to local/global binaries
+  -- 2. Nvim-Lint
   {
     "mfussenegger/nvim-lint",
     opts = {
       linters_by_ft = {
-        php = { "phpcs", "phpmd", "phpstan" },
+        php = { "phpcs" },
       },
       linters = {
         phpcs = {
-          cmd = function()
-            return get_binary_path("phpcs")
-          end,
-        },
-        phpmd = {
-          cmd = function()
-            return get_binary_path("phpmd")
-          end,
-        },
-        phpstan = {
-          cmd = function()
-            return get_binary_path("phpstan")
-          end,
+          cmd = composer_bin .. "/phpcs",
+          args = {
+            "-q",
+            "--report=json",
+            "--standard=WordPress",
+            "-",
+          },
         },
       },
     },
   },
 
-  -- 3. Conform: Point to the Composer phpcbf
+  -- 3. Conform
   {
     "stevearc/conform.nvim",
     opts = {
@@ -52,16 +39,15 @@ return {
       },
       formatters = {
         phpcbf = {
-          command = function()
-            return get_binary_path("phpcbf")
-          end,
+          command = composer_bin .. "/phpcbf",
+          prepend_args = { "--standard=WordPress" },
           valid_exit_codes = { 0, 1 },
         },
       },
     },
   },
 
-  -- 4. LSP Config: Configure Intelephense to read ACF Stubs
+  -- 4. LSP Config: Intelephense yes, phpactor no
   {
     "neovim/nvim-lspconfig",
     opts = {
