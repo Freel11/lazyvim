@@ -10,6 +10,8 @@ local function get_wp_includes()
     return {
       public_path .. "/wp-includes",
       public_path .. "/wp-admin/includes",
+      -- Included Understrap parent theme's function definitions
+      public_path .. "/wp-content/themes/understrap",
     }
   end
 
@@ -84,6 +86,7 @@ return {
                 vim.fn.expand("~/.config/composer/vendor/php-stubs/acf-pro-stubs"),
                 wp_core_paths[1],
                 wp_core_paths[2],
+                wp_core_paths[3],
               },
             },
           },
